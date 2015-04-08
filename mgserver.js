@@ -75,8 +75,15 @@ var server = net.createServer(function (c) {
   }
 
   c.on('error', function(error){
-    console.log('ERROR: ' + error.message);
+    console.log('SOCKET ERROR: ' + error.message + " -- " + c.remoteAddress + ":" + c.remotePort + " -- " + userID + " -- " + userName );
     c.destroy();
+    //c.end();
+  });
+
+  c.on('end', function(){
+    console.log('Half closed END:' + c.remoteAddress + ":" + c.remotePort + " -- " + userID + " -- " + userName);
+    //c.destroy();
+    c.end();
   });
 
   c.on('packet', function(type, size, packet){

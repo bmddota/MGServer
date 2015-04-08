@@ -18,7 +18,7 @@ var name = process.argv[3];
 //var PORT = 4450;//7123;
 var HOST = '127.0.0.1';
 var PORT = 7123;
-var token = "w3f9iBDwpMlGYL7vW55xrQ";
+var token = "";
 
 var client = new net.Socket();
 client.connect(PORT, HOST, function() {

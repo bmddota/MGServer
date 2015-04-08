@@ -148,9 +148,9 @@ module.exports = function(server, name){
 	};
 
 	channel.disconnectUser = function(fromUser){
-		channel.toChannel(fromUser, {type:"disconnected", fromUser:fromUser.ID, channel:name}, SYSTEM_JSON);
-
 		dropUser(channel, fromUser);
+
+		channel.toChannel(null, {type:"disconnected", fromUser:fromUser.ID, channel:name}, SYSTEM_JSON);
 	};
 
 	channel.banUser = function(byUser, user, reason, time){
@@ -186,7 +186,7 @@ module.exports = function(server, name){
 			case ROLE_MODERATOR:
 				channel.moderators[user.ID] = user;
 				break;
-			case ROLE_USER:
+			default:
 				channel.users[user.ID] = user;
 				break;
 		}
